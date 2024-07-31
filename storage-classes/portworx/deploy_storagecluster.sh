@@ -67,7 +67,7 @@ oc wait --filename="${TOP_DIR}/storagecluster.yaml"  \
 
 oc wait -n "${STORAGECLUSTER_NAMESPACE}" storagenodes --all \
   --for=condition=NodeState=Online \
-  --timeout='10m'
+  --timeout='60m'
 
 # Add RWX StorageClass
 oc apply --filename="${SCRIPT_DIR}/03_shared_storageclass.yaml" --overwrite

@@ -98,3 +98,7 @@ sed -e "s/__NAME__/${STORAGE_CLUSTER_NAME}/" \
     -e "s/__STORAGE_TYPE__/${STORAGE_TYPE:-gp3}/" \
     -e "s/__VOLUME_SIZE__/${VOLUME_SIZE:-150}/" \
     "${SCRIPT_DIR}/storagecluster.yaml" > "${TOP_DIR}/storagecluster.yaml"
+
+# Create a monitoring ConfigMap
+oc apply -f ${SCRIPT_DIR}/monitoring_config.yaml -n openshift-monitoring || true
+oc get nodes -A || true
