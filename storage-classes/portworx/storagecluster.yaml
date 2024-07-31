@@ -1,0 +1,29 @@
+kind: StorageCluster
+apiVersion: core.libopenstorage.org/v1
+metadata:
+  name: __NAME__
+  namespace: kube-system
+  annotations:
+    portworx.io/is-openshift: "true"
+    portworx.io/misc-args: "--oem esse"
+spec:
+  image: portworx/oci-monitor:3.0.0
+  imagePullPolicy: Always
+  kvdb:
+    internal: true
+  cloudStorage:
+    deviceSpecs:
+    - type=__STORAGE_TYPE__,size=__VOLUME_SIZE__
+  secretsProvider: k8s
+  startPort: 17001
+  stork:
+    enabled: true
+  autopilot:
+    enabled: true
+  csi:
+    enabled: true
+  monitoring:
+    telemetry:
+      enabled: false
+  runtimeOptions:
+    default-io-profile: "6"
